@@ -22,9 +22,10 @@ jobs:
       - name: Install mypy
         run: |
           python -m pip install --upgrade pip
-          pip install -e .
           pip install mypy
 
       - name: Run mypy (do not fail build)
+        env:
+          PYTHONPATH: ${{ github.workspace }}/src
         run: |
           mypy src || true
